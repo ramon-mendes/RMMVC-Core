@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://xtiles.app/favicon.ico">
+    <!-- Import Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- CSS for styling -->
+    <style>
+        body
+        {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1
+        {
+            text-align: left;
+        }
+
+        ul
+        {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li
+        {
+            margin-bottom: 10px;
+        }
+
+        li a
+        {
+            text-decoration: none;
+            color: #333;
+        }
+
+        li a:hover
+        {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <blockquote class="trello-board-compact">
+        <a href="https://trello.com/b/K4SQyTwi/kanban-template">Trello Board</a>
+    </blockquote>
+    <script src="https://p.trellocdn.com/embed.min.js"></script>
+
+
+    <h1>Atividades</h1>
+    <ul>
+        <li><a href="https://xtiles.app/6634efaa8ad93a79bb5ec1c7">1. Francês</a></li>
+        <li><a href="https://xtiles.app/66329dd32c20330eb7c98cea">2. Tin whistle</a></li>
+        <li><a href="https://xtiles.app/665a6670b29e9e614378743e">3. Natação</a></li>
+        <li><a href="https://xtiles.app/663c222e99282e1cd8606710">4. Dança</a></li>
+        <li><a href="https://xtiles.app/667c5e5e9293b81d615b0d87">5. Mindfulness & ACT</a></li>
+        <li><a href="https://xtiles.app/667c678d9293b81d615b4343">6. Psic Dilse: pessoal</a></li>
+    </ul>
+
+    <!-- JavaScript for keyboard shortcuts -->
+    <script>
+        document.addEventListener('keydown', function (event) {
+            // Get the numeric key pressed
+            const key = event.key;
+
+            // Map numeric keys to their corresponding link index (1 to 6)
+            const linkMap = {
+                '1': 0, // 1 corresponds to index 0 (Francês)
+                '2': 1, // 2 corresponds to index 1 (Tin whistle)
+                '3': 2, // 3 corresponds to index 2 (Natação)
+                '4': 3, // 4 corresponds to index 3 (Dança)
+                '5': 4, // 5 corresponds to index 4 (Mindfulness & ACT)
+                '6': 5  // 6 corresponds to index 5 (Psic Dilse: pessoal)
+            };
+
+            // Check if the pressed key corresponds to a valid link index
+            if (key in linkMap) {
+                // Get the link URL from the array based on the mapped index
+                const linkIndex = linkMap[key];
+                const links = document.querySelectorAll('ul li a');
+
+                // Open the corresponding link
+                if (links[linkIndex]) {
+                    window.open(links[linkIndex].getAttribute('href'), '_self');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

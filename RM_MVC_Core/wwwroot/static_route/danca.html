@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bell Timer</title>
+
+    <!-- Link to Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Favicon for Android -->
+    <link rel="icon" sizes="192x192" href="bell-icon.png">
+
+    <style>
+        body
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container
+        {
+            padding: 20px;
+        }
+
+        .play-button
+        {
+            background-color: #6200ea;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            padding: 20px;
+            font-size: 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .play-button:active
+            {
+                background-color: #3700b3;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bell Timer</h1>
+        <p>Press the play button to start the timer.</p>
+
+        <button class="play-button" onclick="startBellTimer()">
+            <span class="material-icons">play_arrow</span>
+        </button>
+
+        <audio id="bellAudio" src="tempbell.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+        function startBellTimer() {
+            // Play the bell immediately
+            playBell();
+
+            // Play the bell again after 15 minutes
+            setTimeout(playBell, 15 * 60 * 1000);
+
+            // Play the bell again after another 5 minutes
+			setTimeout(playBell, (15 + 10) * 60 * 1000);
+        }
+
+        function playBell() {
+            document.getElementById('bellAudio').play();
+        }
+    </script>
+</body>
+</html>

@@ -21,7 +21,6 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            text-align: center;
         }
 
         .container
@@ -50,11 +49,12 @@
             }
     </style>
 </head>
-<body>
 
+<body>
     <div class="container">
-        <h1>Bell Timer</h1>
-        <p>Press the play button to start the timer.</p>
+        <h1>Manhã</h1>
+        <p>Talvez algo para lembrar aqui...</p>
+        <p>Veja a mini lousa...</p>
 
         <button class="play-button" onclick="startBellTimer()">
             <span class="material-icons">play_arrow</span>
@@ -64,23 +64,30 @@
     </div>
 
     <script>
+        let audioContext;
+
         function startBellTimer() {
-            // Play the bell immediately
-            playBell();
+            // delete #play-button element
+            document.querySelector('.play-button').remove();
 
-            // Play the bell again after 2 minutes
-            setTimeout(playBell, 120000);
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-            // Play the bell again after another 10 minutes
-            setTimeout(playBell, 120000 + 600000);
+			if(document.documentElement.requestFullscreen) {
+				document.documentElement.requestFullscreen();
+            }
 
-            // Play the bell again after another 5 minutes
-            setTimeout(playBell, 120000 + 600000 + 300000);
+			setTimeout(playBell, 0);
+			setTimeout(playBell, 120000 + 600000);
+			setTimeout(playBell, 120000 + 600000 + 300000);
         }
 
-        function playBell() {
-            document.getElementById('bellAudio').play();
-        }
+
+		function playBell() {
+			const audioElement = document.getElementById('bellAudio');
+			const track = audioContext.createMediaElementSource(audioElement);
+			track.connect(audioContext.destination);
+			audioElement.play();
+		}
     </script>
 </body>
 </html>

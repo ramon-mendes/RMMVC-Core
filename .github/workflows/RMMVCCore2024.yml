@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+
 env:
   AZURE_WEBAPP_NAME: RMMVCCore2024
   AZURE_WEBAPP_PACKAGE_PATH: RM_MVC_Core\published

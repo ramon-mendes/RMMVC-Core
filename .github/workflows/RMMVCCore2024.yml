@@ -1,4 +1,5 @@
 name: Build and deploy .NET Core application to Web App RMMVCCore2024
+
 on:
   push:
     branches:

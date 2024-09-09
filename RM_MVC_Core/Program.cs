@@ -33,7 +33,18 @@ class Program
 			{
 				FileProvider = new PhysicalFileProvider(
 					Path.Combine(builder.Environment.WebRootPath, "static_route")),
-				RequestPath = "/static"
+				RequestPath = "/static",
+				ServeUnknownFileTypes = true,
+				DefaultContentType = "text/html"
+			});
+
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider = new PhysicalFileProvider(
+					Path.Combine(builder.Environment.WebRootPath, "static_route/pwa")),
+				RequestPath = "/static/pwa",
+				ServeUnknownFileTypes = true,
+				DefaultContentType = "text/html"
 			});
 		}
 

@@ -10,9 +10,10 @@ class Program
 		var builder = WebApplication.CreateBuilder(args);
 
 		// Add services to the container.
-		builder.Services.AddControllersWithViews();
+        builder.Services.AddControllersWithViews()
+			.AddRazorRuntimeCompilation();
 
-		var app = builder.Build();
+        var app = builder.Build();
 
 		// Configure the HTTP request pipeline.
 		if(!app.Environment.IsDevelopment())
@@ -28,6 +29,7 @@ class Program
 			// Serve static files from the default wwwroot folder
 			app.UseStaticFiles();
 
+			/*
 			// Serve static files from "static_route" folder
 			app.UseStaticFiles(new StaticFileOptions
 			{
@@ -36,16 +38,7 @@ class Program
 				RequestPath = "/static",
 				ServeUnknownFileTypes = true,
 				DefaultContentType = "text/html"
-			});
-
-			app.UseStaticFiles(new StaticFileOptions
-			{
-				FileProvider = new PhysicalFileProvider(
-					Path.Combine(builder.Environment.WebRootPath, "static_route/pwa")),
-				RequestPath = "/static/pwa",
-				ServeUnknownFileTypes = true,
-				DefaultContentType = "text/html"
-			});
+			});*/
 		}
 
 		app.UseRouting();

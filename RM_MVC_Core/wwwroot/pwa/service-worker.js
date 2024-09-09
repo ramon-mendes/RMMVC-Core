@@ -2,11 +2,10 @@
     event.waitUntil(
         caches.open('pwa-cache').then((cache) => {
             return cache.addAll([
-                '/',
-                '/index.html',
-                '/css/style.css',
-                '/js/app.js',
-                '/manifest.json'
+                '/PWAApp',
+                '/pwa/css/site.css',
+                '/pwa/js/app.js',
+                '/pwa/manifest.json'
             ]);
         })
     );

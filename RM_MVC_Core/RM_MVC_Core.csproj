@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\static_route\weather.html">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\pwa\static_route\weather.html">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

@@ -29,7 +29,6 @@ class Program
 			// Serve static files from the default wwwroot folder
 			app.UseStaticFiles();
 
-			/*
 			// Serve static files from "static_route" folder
 			app.UseStaticFiles(new StaticFileOptions
 			{
@@ -38,7 +37,7 @@ class Program
 				RequestPath = "/static",
 				ServeUnknownFileTypes = true,
 				DefaultContentType = "text/html"
-			});*/
+			});
 		}
 
 		app.UseRouting();

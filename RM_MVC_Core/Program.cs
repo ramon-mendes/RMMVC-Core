@@ -30,14 +30,14 @@ class Program
 			app.UseStaticFiles();
 
 			// Serve static files from "static_route" folder
-			app.UseStaticFiles(new StaticFileOptions
-			{
-				FileProvider = new PhysicalFileProvider(
-					Path.Combine(builder.Environment.WebRootPath, "static_route")),
-				RequestPath = "/static",
-				ServeUnknownFileTypes = true,
-				DefaultContentType = "text/html"
-			});
+			//app.UseStaticFiles(new StaticFileOptions
+			//{
+			//	FileProvider = new PhysicalFileProvider(
+			//		Path.Combine(builder.Environment.WebRootPath, "static_route")),
+			//	RequestPath = "/static",
+			//	ServeUnknownFileTypes = true,
+			//	DefaultContentType = "text/html"
+			//});
 		}
 
 		app.UseRouting();

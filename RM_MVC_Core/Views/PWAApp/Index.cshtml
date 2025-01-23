@@ -10,10 +10,83 @@
     <link rel="manifest" href="/pwa/manifest.json">
     <link rel="stylesheet" href="/pwa/css/site.css">
     <script src="/pwa/js/app.js" defer></script>
+
+    <style>
+        body
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container
+        {
+            padding: 20px;
+        }
+
+        .play-button
+        {
+            background-color: #6200ea;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            padding: 20px;
+            font-size: 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .play-button:active
+            {
+                background-color: #3700b3;
+            }
+    </style>
 </head>
 
 <body>
-    <h1>Welcome to My PWA</h1>
-    <!-- PWA content goes here -->
+    <div class="container">
+        <h1>Manhã</h1>
+        <p>Talvez algo para lembrar aqui...</p>
+        <p>Veja a mini lousa...</p>
+
+        <button class="play-button" onclick="startBellTimer()">
+            <span class="material-icons">play_arrow</span>
+        </button>
+
+        <audio id="bellAudio" src="/pwa/tempbell.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+        let audioContext;
+
+        function startBellTimer() {
+            // delete #play-button element
+            document.querySelector('.play-button').remove();
+
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            if(document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+
+            setTimeout(playBell, 0);
+            setTimeout(playBell, 20 * 1000);
+        }
+
+
+        function playBell() {
+            const audioElement = document.getElementById('bellAudio');
+            const track = audioContext.createMediaElementSource(audioElement);
+            track.connect(audioContext.destination);
+            audioElement.play();
+        }
+    </script>
 </body>
 </html>

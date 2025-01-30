@@ -5,6 +5,7 @@
                 '/PWAApp',
                 '/pwa/css/site.css',
                 '/pwa/js/app.js',
+                '/pwa/js/test.js',
                 '/pwa/manifest.json'
             ]);
         })

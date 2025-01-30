@@ -23,7 +23,7 @@ class Program
 			app.UseHsts();
 		}
 
-		app.UseHttpsRedirection();
+		//app.UseHttpsRedirection();
 
 		{
 			// Serve static files from the default wwwroot folder
@@ -42,7 +42,7 @@ class Program
 
 		app.UseRouting();
 
-		app.UseAuthorization();
+		//app.UseAuthorization();
 
 		app.MapControllerRoute(
 			name: "default",

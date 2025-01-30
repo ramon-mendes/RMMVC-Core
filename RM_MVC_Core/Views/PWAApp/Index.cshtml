@@ -9,7 +9,6 @@
     <title>My PWA</title>
     <link rel="manifest" href="/pwa/manifest.json">
     <link rel="stylesheet" href="/pwa/css/site.css">
-    <script src="/pwa/js/app.js" defer></script>
 
     <style>
         body
@@ -26,6 +25,7 @@
         .container
         {
             padding: 20px;
+            text-align: center;
         }
 
         .play-button
@@ -47,46 +47,44 @@
             {
                 background-color: #3700b3;
             }
+
+        .elapsed-time
+        {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .log-textarea
+        {
+            margin-top: 20px;
+            width: 100%;
+            height: 200px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Manhã</h1>
-        <p>Talvez algo para lembrar aqui...</p>
-        <p>Veja a mini lousa...</p>
+        <h1>P2</h1>
+        <h2>--</h2>
 
-        <button class="play-button" onclick="startBellTimer()">
+        <button class="play-button">
             <span class="material-icons">play_arrow</span>
         </button>
 
-        <audio id="bellAudio" src="/pwa/tempbell.mp3" preload="auto"></audio>
+        <div class="elapsed-time" id="elapsedTime">Elapsed Time: 0 seconds</div>
+        <textarea class="log-textarea" id="logTextarea" readonly></textarea>
+
+        <div id="test2">test2</div>
+        <div id="test">test</div>
     </div>
 
     <script>
-        let audioContext;
-
-        function startBellTimer() {
-            // delete #play-button element
-            document.querySelector('.play-button').remove();
-
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-            if(document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            }
-
-            setTimeout(playBell, 0);
-            setTimeout(playBell, 20 * 1000);
-        }
-
-
-        function playBell() {
-            const audioElement = document.getElementById('bellAudio');
-            const track = audioContext.createMediaElementSource(audioElement);
-            track.connect(audioContext.destination);
-            audioElement.play();
-        }
+        let test = document.getElementById('test');
+		test.innerHTML = 'Hello from JavaScript';
     </script>
+
+    <script src="/pwa/js/test.js"></script>
+    <script src="/pwa/js/app.js"></script>
 </body>
 </html>

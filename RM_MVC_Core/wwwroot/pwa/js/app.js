@@ -1,7 +1,9 @@
-﻿if('serviceWorker' in navigator) {
+﻿const BELLS = [0, 2, 10, 12, 14];
+
+if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/pwa/service-worker.js')
         .then((registration) => {
-            alert('Service Worker registrado com sucesso:' + registration);
+            //alert('Service Worker registrado com sucesso:' + registration);
         })
         .catch((error) => {
             alert('Falha ao registrar o Service Worker:' + error);
@@ -9,13 +11,10 @@
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('h2').textContent = 'meowwww';
-
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     let audioBuffer;
     let wakeLock = null;
     let startTime;
-    let elapsedTimeInterval;
     let logTextarea = document.getElementById('logTextarea');
 
     // Override console.log to print to the textarea
@@ -27,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             logTextarea.scrollTop = logTextarea.scrollHeight;
         }
     };
+
+    console.log("Array of minutes: " + BELLS.join(', '));
 
     // Global error handler
     window.onerror = function(message, source, lineno, colno, error) {
@@ -61,13 +62,52 @@ document.addEventListener('DOMContentLoaded', () => {
         source.start(time);
     }
 
+    function playThreeBells(time) {
+        let source = audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(audioContext.destination);
+        source.start(time);
+
+        source = audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(audioContext.destination);
+        source.start(time + 1);
+
+        source = audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(audioContext.destination);
+        source.start(time + 2);
+    }
+
     // Schedule the bell rings based on the given minutes array
     function scheduleBells(minutesArray) {
         const now = audioContext.currentTime;
-        minutesArray.forEach(minute => {
+        minutesArray.forEach((minute, index) => {
             const time = now + minute * 60; // Convert minutes to seconds
-            playBell(time);
+
+            if(index === minutesArray.length - 1) {
+                playThreeBells(time);
+            }
+            else {
+                playBell(time);
+            }
         });
+
+        const lastElement = minutesArray[minutesArray.length - 1];
+        setTimeout(function() {
+            try {
+                let count = parseInt(localStorage.getItem("meditacoes")) || 0;
+                count++;
+                localStorage.setItem("meditacoes", count);
+                console.log('');
+                console.log(`Meditações finalizadas: ${count}`);
+                console.log('');
+                console.log('Para zerar a contagem: limpar o cache');
+            }
+            catch(err) {
+                alert(err);
+            }
+        }, lastElement * 60 * 1000 + 10);
     }
 
     // Request a wake lock
@@ -83,18 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Update the elapsed time
-    function updateElapsedTime() {
-        const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-        document.getElementById('elapsedTime').textContent = `Elapsed Time: ${elapsedTime} seconds`;
-    }
-
     // Start the process
     async function start() {
         startTime = Date.now();
-        elapsedTimeInterval = setInterval(updateElapsedTime, 1000);
         await loadBellSound();
-        scheduleBells([0, 1, 5]);
+        scheduleBells(BELLS);
         await requestWakeLock();
     }
 

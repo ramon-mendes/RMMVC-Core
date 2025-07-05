@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My PWA</title>
+    <title>Meditation tool</title>
     <link rel="manifest" href="/pwa/manifest.json">
     <link rel="stylesheet" href="/pwa/css/site.css">
 
@@ -58,6 +58,7 @@
         {
             margin-top: 20px;
             width: 100%;
+            min-width: 300px;
             height: 200px;
         }
     </style>
@@ -65,26 +66,15 @@
 
 <body>
     <div class="container">
-        <h1>P2</h1>
-        <h2>--</h2>
-
         <button class="play-button">
-            <span class="material-icons">play_arrow</span>
+            ▶
         </button>
 
-        <div class="elapsed-time" id="elapsedTime">Elapsed Time: 0 seconds</div>
-        <textarea class="log-textarea" id="logTextarea" readonly></textarea>
+        <p>Priming: OFF...</p>
 
-        <div id="test2">test2</div>
-        <div id="test">test</div>
+        <textarea class="log-textarea" id="logTextarea" readonly></textarea>
     </div>
 
-    <script>
-        let test = document.getElementById('test');
-		test.innerHTML = 'Hello from JavaScript';
-    </script>
-
-    <script src="/pwa/js/test.js"></script>
     <script src="/pwa/js/app.js"></script>
 </body>
 </html>

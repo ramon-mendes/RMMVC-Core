@@ -2,8 +2,8 @@
 
 namespace RM_MVC_Core.Controllers
 {
-    // PWAApp because PWA overlaps the wwwroot/pwa path
-    public class PWAAppController : Controller
+	// PWAMeditation because PWA overlaps the wwwroot/pwa path
+	public class PWAMeditationController : Controller
 	{
 		public IActionResult Index()
 		{
